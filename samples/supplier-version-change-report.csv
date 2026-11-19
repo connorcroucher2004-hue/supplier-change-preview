@@ -1,0 +1,5 @@
+﻿status,sku,changed_fields,old_title,new_title,old_price,new_price,old_gtin,new_gtin,old_image,new_image,review_note
+CHANGED,001-A,price,Pot 20,Pot 20,19.99,21.99,4006381333931,4006381333931,,,"Review supplier changes, verify prices and identifiers, and approve updates manually."
+NEW_IN_FILE,001-D,,,New item,,9.50,,,,,"Potential new item. Check product details, prices and inventory before creating a draft."
+NOT_IN_NEW_FILE,001-C,,Old item,,8.00,,,,,,Do not delete automatically: verify if the new supplier file is complete and covers this SKU.
+UNCHANGED,001-B,,Trowel,Trowel,6.99,6.99,,,,,No differences in fields present and mapped in both files.
