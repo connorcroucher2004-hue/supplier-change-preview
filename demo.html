@@ -1,0 +1,334 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Supplier Change Check — Private beta comparison demo</title><meta name="description" content="Offline supplier catalogue audit and Shopify draft CSV preparation. No invented specifications, no automatic store changes."><style>:root{--ink:#17251f;--quiet:#5b6b62;--green:#134634;--lime:#e0f6d1;--paper:#f8faf6;--border:#dce6dd;--orange:#ae5d26;--red:#a03437;--shadow:0 22px 65px rgba(30,55,38,.10)}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px}button,input,select{font:inherit}button{cursor:pointer;border:0}header{background:#fff;border-bottom:1px solid var(--border)}.wrap{max-width:1150px;margin:auto;padding:0 26px}.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.4px;font-size:21px}.logo{width:34px;height:34px;border-radius:10px;background:#114833;display:grid;place-items:center;color:#e7ffda;font-size:22px}.preview{font-size:12px;color:#466653;background:#edf6e7;border-radius:30px;padding:7px 12px;font-weight:650}.hero{padding:62px 0 34px;max-width:860px}.eyebrow{color:#4d7e56;font-size:12px;text-transform:uppercase;font-weight:800;letter-spacing:1.8px}.hero h1{font-size:clamp(34px,4.8vw,61px);line-height:1.07;letter-spacing:-2.7px;margin:16px 0 18px;font-weight:830}.hero h1 span{color:#397553}.hero p{color:var(--quiet);font-size:17px;line-height:1.7;max-width:690px}.panel{background:white;border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:27px;margin-bottom:22px}.panel h2{font-size:21px;margin:0 0 9px;letter-spacing:-.4px}.sub{color:var(--quiet);margin:0 0 20px;line-height:1.55}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{background:var(--green);color:white;border-radius:12px;padding:13px 18px;font-weight:720;display:inline-flex;align-items:center;gap:8px;text-decoration:none;justify-content:center;transition:opacity .15s}.btn:hover{opacity:.9}.btn.secondary{background:#edf3ed;color:#204a35}.btn:disabled{background:#a2ada5;cursor:not-allowed;opacity:.6}.upload{border:2px dashed #abc8b2;background:#f8fcf6;border-radius:15px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin:10px 0 17px}.upload strong{font-size:16px}.upload small{display:block;color:var(--quiet);margin-top:5px}.upload input{max-width:260px}.fineprint{font-size:12px;color:#64756b;margin:14px 0 0}.notice{background:#f1f8ee;padding:14px 16px;border-left:3px solid #5a9865;color:#35633d;border-radius:7px;line-height:1.5}.notice.warn{background:#fff9e9;color:#855d20;border-left-color:#c5a039}.hidden{display:none!important}.mapping{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}.field label{display:block;color:#3f584a;font-size:12px;margin-bottom:6px;font-weight:740}.field select{width:100%;background:#fbfdf9;border:1px solid #cfdccf;border-radius:10px;padding:11px 10px;color:var(--ink)}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:17px 0 20px}.stat{border:1px solid var(--border);padding:18px 14px;border-radius:14px;background:#fbfdfb}.stat b{font-size:28px;display:block;letter-spacing:-1px}.stat span{color:var(--quiet);font-size:12px;font-weight:700}.stat.bad b{color:var(--red)}.stat.good b{color:#318251}.issues{overflow:auto;border:1px solid var(--border);border-radius:14px;margin-top:15px}table{border-collapse:collapse;width:100%;min-width:780px;font-size:13px}th{text-align:left;background:#f5f9f3;color:#526655;padding:13px;border-bottom:1px solid var(--border)}td{padding:12px 13px;border-bottom:1px solid #edf0eb;vertical-align:top}tr:last-child td{border-bottom:0}.pill{display:inline-block;border-radius:99px;font-size:11px;font-weight:800;padding:5px 8px;text-transform:uppercase;letter-spacing:.4px}.pill.critical{background:#fce5e3;color:#9c3036}.pill.warning{background:#fdf0d9;color:#855d24}.split{display:flex;justify-content:space-between;align-items:center;gap:16px}.footer{padding:20px 0 55px;font-size:12px;color:#6e7e73}.narrow{max-width:800px}.statusline{margin:14px 0 0;line-height:1.5;color:#43644e}.flag{font-size:12px;font-weight:800;background:#fff4df;padding:5px 9px;border-radius:8px;color:#865e19}code{background:#f1f4ef;padding:2px 4px;border-radius:4px}@media(max-width:760px){.hero{padding:39px 0 15px}.hero h1{letter-spacing:-1.6px}.hero p{font-size:15px}.mapping{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.stats .stat:last-child{grid-column:span 2}.panel{padding:18px}.upload{display:block}.upload input{margin-top:18px;max-width:100%}.split{align-items:flex-start;flex-direction:column}}@media(max-width:430px){.mapping{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.wrap{padding:0 15px}}
+
+.diffFiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}.diffFiles label{font-size:13px;font-weight:700;color:var(--ink)}.diffFiles input{display:block;margin-top:8px;width:100%;border:1px solid var(--border);padding:12px;border-radius:10px;background:#fff}@media(max-width:650px){.diffFiles{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="wrap nav"><div class="brand"><div class="logo">▦</div> Supplier Change Check</div><span class="preview">PRIVATE BETA · V0.2</span></div></header>
+<main class="wrap"><p class="fineprint" style="margin-top:16px"><a href="./index.html" style="color:#24583b">← Back to buyer preview</a></p>
+<section class="hero"><div class="eyebrow">Supplier files, under control</div><h1>Turn messy product data into <span>reviewable Shopify drafts.</span></h1><p>Identify missing prices, duplicate SKUs, invalid EANs and missing assets. Get a traceable issue report and safe <strong>draft-only</strong> Shopify CSV. Never guess product facts.</p></section>
+<section class="panel"><div class="split"><div><h2>1. Load supplier data</h2><p class="sub">Works with CSV or TSV exports from Excel, Google Sheets and suppliers. Your files stay in your browser.</p></div><div class="flag">No sign-in · No upload</div></div>
+<div class="upload"><div><strong>Select your catalogue CSV</strong><small>Accepted: .csv, .tsv, .txt · UTF-8 recommended · max 10 MB</small></div><input aria-label="Choose supplier catalogue" type="file" id="file" accept=".csv,.tsv,.txt,text/csv,text/tab-separated-values"></div>
+<div class="toolbar"><button class="btn secondary" id="demo">Try demonstration data</button><span id="loaded" class="statusline"></span></div></section>
+<section class="panel hidden" id="mapPanel"><h2>2. Confirm column matching</h2><p class="sub">We guessed the columns automatically. Change any incorrect selection; unspecified fields are never invented.</p><div id="mapping" class="mapping"></div><div class="toolbar"><button id="run" class="btn">Scan catalogue →</button><span class="fineprint">No changes are made to an online store.</span></div></section>
+<section class="panel hidden" id="results"><div class="split"><div><h2>3. Audit results</h2><p id="filedesc" class="sub"></p></div><span class="preview">SCAN COMPLETE</span></div><div class="stats"><div class="stat"><b id="srows">0</b><span>Product rows</span></div><div class="stat bad"><b id="scrit">0</b><span>Critical issues</span></div><div class="stat"><b id="swarn">0</b><span>Warnings</span></div><div class="stat good"><b id="sdraft">0</b><span>Draft-ready</span></div><div class="stat bad"><b id="sblocked">0</b><span>Blocked rows</span></div></div>
+<div class="notice warn">Only rows with confirmed retail prices, unique SKUs and valid identifiers can be exported. All exported products are Shopify <strong>drafts</strong> and are not published. Review the CSV carefully before importing.</div>
+<div class="toolbar" style="margin-top:18px"><button id="issuesExport" class="btn secondary">↓ Issue report CSV</button><button id="jsonExport" class="btn secondary">↓ Full audit JSON</button><button id="draftExport" class="btn">↓ Shopify draft CSV</button></div><p id="blockedNote" class="fineprint"></p>
+<div class="issues"><table><thead><tr><th>Source row</th><th>Severity</th><th>Problem</th><th>Recommended action</th></tr></thead><tbody id="issuesBody"></tbody></table></div><p id="issueFoot" class="fineprint"></p></section>
+<section class="panel" id="comparePanel"><div class="split"><div><h2>4. Compare supplier catalogue versions</h2><p class="sub">See what a supplier changed between two CSV snapshots. No shop data is read or updated.</p></div><span class="flag">New: comparison report</span></div>
+<div class="diffFiles"><label>Older supplier file<input type="file" id="oldFile" accept=".csv,.tsv,.txt,text/csv"></label><label>Newer supplier file<input type="file" id="newFile" accept=".csv,.tsv,.txt,text/csv"></label></div>
+<p class="fineprint">Both files need a manufacturer SKU. We match known column names automatically; confirm they are correct in the comparison note. Only fields mapped in both files are compared. Missing from newer snapshot does not mean discontinued.</p>
+<div class="toolbar"><button class="btn secondary" id="compareDemo">Try two sample supplier versions</button><button class="btn" id="compareRun">Compare versions →</button></div>
+<div id="comparisonMapping" class="fineprint"></div>
+<div id="comparisonResults" class="hidden"><div class="stats"><div class="stat"><b id="dChanged">0</b><span>Changed SKUs</span></div><div class="stat good"><b id="dNew">0</b><span>New SKUs</span></div><div class="stat bad"><b id="dMissing">0</b><span>Not in new file</span></div><div class="stat"><b id="dUnchanged">0</b><span>Unchanged</span></div><div class="stat bad"><b id="dInvalid">0</b><span>Rows to resolve</span></div></div>
+<div class="notice warn">This comparison does not infer discontinuations, inventory or prices. Duplicate SKUs are excluded from comparison and reported separately. No automatic store updates.</div>
+<div class="toolbar" style="margin-top:18px"><button class="btn secondary" id="changeExport">↓ Change report CSV</button><button class="btn secondary" id="changeJson">↓ Full comparison JSON</button></div>
+<div class="issues"><table><thead><tr><th>SKU</th><th>Status</th><th>Differences</th><th>What to do</th></tr></thead><tbody id="changeBody"></tbody></table></div><p id="changeFoot" class="fineprint"></p></div></section>
+<section class="panel"><h2>What this beta does — and doesn't</h2><p class="sub narrow">Checks CSV content, validates GTIN checksum and duplicate identifiers, preserves supplier sources in reports, prepares non-published product drafts and formats provided specifications into descriptions. It does not validate legal compliance, check whether image links actually load, verify suppliers, choose sale prices, call an AI model, or connect to Shopify. This is an initial product prototype, not a production SaaS platform.</p><div class="notice">For existing Shopify products, <strong>do not</strong> import this file as an overwrite: modifying product variants can destroy variant IDs. This release is for preparing <strong>new draft products</strong> only.</div></section>
+</main><footer class="wrap footer">Supplier Change Check · v0.2 private prototype · No payment, accounts or Shopify connection.</footer>
+<script>/* RangeGate — offline catalog audit and safe draft preparation.
+   V0.1, 2026-11-16. No network requests, no dependencies. */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.RangeGate = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+  const FIELDS = [
+    ['title','Product title', ['product name','product title','title','name','item name','description short']],
+    ['sku','Manufacturer SKU', ['manufacturer sku','sku','item sku','product sku','product code','part number','item no','stock code']],
+    ['gtin','EAN / GTIN', ['ean','gtin','barcode','barcodes','ean13','upc','product ean','ean code']],
+    ['brand','Brand / vendor', ['brand','vendor','manufacturer','supplier brand']],
+    ['price','Retail selling price', ['retail price','selling price','price','sell price','price gbp']],
+    ['description','Existing description', ['description','body html','product description','details']],
+    ['image','Public image URL', ['image url','image src','product image url','image link','main image','image']],
+    ['color','Colour / color', ['colour','color','product colour']],
+    ['width','Width (cm)', ['width cm','width (cm)']],
+    ['height','Height (cm)', ['height cm','height (cm)']],
+    ['depth','Depth (cm)', ['depth cm','depth (cm)']],
+    ['capacity','Capacity (L)', ['capacity l','capacity (l)']],
+    ['weight','Weight (g)', ['weight g','weight (g)']],
+    ['material','Material', ['material','material type']],
+    ['source','Supplier source URL', ['source url','supplier url','product url','source link']],
+    ['notes','Supplier notes', ['notes','notes missing information','notes / missing information','warnings']]
+  ];
+  const SHOPIFY_COLUMNS = ['URL handle','Title','Description','Vendor','SKU','Barcodes','Option1 name','Option1 value','Price','Product image URL','Image alt text','Status','Published on online store'];
+  const ISSUE_COLUMNS = ['source_row','severity','code','field','value','message','suggested_action','source_url'];
+
+  function normal(s) { return String(s == null ? '' : s).trim().toLowerCase().replace(/[^a-z0-9]+/g,' ' ).replace(/\s+/g,' ').trim(); }
+  function safe(s) { return String(s == null ? '' : s).trim(); }
+  function parseCSV(input, delimiter) {
+    const text = String(input || '').replace(/^\uFEFF/, '');
+    if (!delimiter) {
+      const first = text.split(/\r?\n/)[0] || '';
+      const counts = [[',', (first.match(/,/g)||[]).length],['\t',(first.match(/\t/g)||[]).length],[';',(first.match(/;/g)||[]).length]];
+      counts.sort((a,b)=>b[1]-a[1]); delimiter = counts[0][0];
+    }
+    let cells = [], rows = [], value = '', quoted = false;
+    for (let i=0; i<text.length; i++) {
+      const c=text[i];
+      if (quoted) {
+        if (c==='"' && text[i+1]==='"') { value+='"'; i++; }
+        else if (c==='"') quoted=false;
+        else value+=c;
+      } else {
+        if (c==='"' && value==='') quoted=true;
+        else if (c===delimiter) { cells.push(value); value=''; }
+        else if (c==='\n' || c==='\r') {
+          if(c==='\r' && text[i+1]==='\n')i++;
+          cells.push(value); value='';
+          if (cells.some(v=>safe(v)!=='')) rows.push(cells);
+          cells=[];
+        } else value+=c;
+      }
+    }
+    if (quoted) throw new Error('This CSV contains an unfinished quoted cell.');
+    cells.push(value);
+    if (cells.some(v=>safe(v)!=='')) rows.push(cells);
+    if (rows.length < 2) throw new Error('Add a header row and at least one product row.');
+    const headers=rows.shift().map(safe);
+    if (headers.some(h=>!h)) throw new Error('One or more column headers are empty.');
+    if (headers.length<2) throw new Error('At least two columns are required. Check the CSV delimiter.');
+    return {headers, rows:rows.map((cells,idx)=>({cells,sourceRow:idx+2})),delimiter};
+  }
+  function guessMapping(headers) {
+    const mapping={};
+    for (const [field,, aliases] of FIELDS) {
+      let idx=headers.findIndex(h=>aliases.includes(normal(h)));
+      mapping[field]=idx>=0?idx:null;
+    }
+    return mapping;
+  }
+  function numericPrice(v) {
+    const s=safe(v);
+    // Do not guess currency conventions or translate EU decimal commas.
+    if (!/^(?:\d+)(?:\.\d{1,2})?$/.test(s)) return null;
+    const num=Number(s); return Number.isFinite(num)&&num>0?num:null;
+  }
+  function checkGTIN(v) {
+    const raw=safe(v);
+    if (!raw) return {state:'missing',digits:''};
+    const digits=raw.replace(/[\s-]/g,'');
+    if (!/^\d+$/.test(digits)||![8,12,13,14].includes(digits.length)) return {state:'invalid',digits};
+    let sum=0;
+    for (let i=digits.length-2, weight=3; i>=0; i--,weight=weight===3?1:3) sum+=Number(digits[i])*weight;
+    return {state:(10-(sum%10))%10===Number(digits[digits.length-1])?'valid':'invalid',digits};
+  }
+  function slug(s) {
+    return safe(s).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,160).replace(/-+$/,'');
+  }
+  function escHTML(s) { return safe(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+  function validHttpURL(v) {
+    try {const u = new URL(safe(v));return ['http:','https:'].includes(u.protocol)&&u.hostname.includes('.')&&!u.username&&!u.password;} catch {return false;}
+  }
+  function buildDescription(row) {
+    const lines = [];
+    for (const [key,label,unit] of [['color','Colour',''],['material','Material',''],['width','Width','cm'],['height','Height','cm'],['depth','Depth','cm'],['capacity','Capacity','L'],['weight','Weight','g']]) {
+      if (safe(row[key])) lines.push(`<li><strong>${label}:</strong> ${escHTML(row[key])}${unit?' '+unit:''}</li>`);
+    }
+    const desc = safe(row.description);
+    return `${desc?`<p>${escHTML(desc).replace(/\n/g,'<br>')}</p>`:''}${lines.length?`<ul>${lines.join('')}</ul>`:''}`;
+  }
+  function encodeCell(value, spreadsheetSafe=false) {
+    let s=String(value == null ? '' : value);
+    // Protect report CSVs opened in spreadsheets from formula execution.
+    if (spreadsheetSafe && /^[\s\t\r\n]*[=+@-]/.test(s)) s="'"+s;
+    return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;
+  }
+  function toCSV(headers, records, spreadsheetSafe=false) {
+    return '\uFEFF'+[headers.join(','),...records.map(r=>headers.map(h=>encodeCell(r[h],spreadsheetSafe)).join(','))].join('\r\n')+'\r\n';
+  }
+  function analyze(parsed,mapping,filename='catalog.csv') {
+    if (parsed.rows.length>30000) throw new Error('Please split catalogues over 30,000 rows into separate files.');
+    const value=(record,field)=>{const n=mapping[field];return n==null?'':safe(record.cells[n]);};
+    const items=parsed.rows.map(record=>{
+      const row={sourceRow:record.sourceRow};for (const [field] of FIELDS)row[field]=value(record,field);return row;
+    });
+    const issues=[], seenSKU=new Map(), seenGTIN=new Map(), seenHandles=new Set();
+    const add=(r,severity,code,field,message,action)=>issues.push({source_row:r.sourceRow,severity,code,field,value:safe(r[field]),message,suggested_action:action,source_url:r.source});
+    const eligibility=new Map();
+    for(const row of items){
+      let blocked=false;
+      if(!row.title){add(row,'critical','MISSING_TITLE','title','A product title is required.','Ask supplier for product name.');blocked=true;}
+      for(const field of ['title','sku','brand']){if(/^[\s]*[=+@-]/.test(row[field])){add(row,'critical','FORMULA_RISK',field,'Field may execute as a spreadsheet formula when opened in Excel.','Verify the source and remove the formula-like prefix.');blocked=true;}}
+      if(!row.sku){add(row,'critical','MISSING_SKU','sku','No unique SKU was provided.','Request a manufacturer SKU before importing.');blocked=true;}
+      if(!row.brand){add(row,'warning','MISSING_BRAND','brand','Brand or vendor missing.','Confirm manufacturer or vendor.');}
+      if(!row.price){add(row,'critical','PRICE_MISSING','price','Retail price missing. Supplier cost or RRP must not be guessed as your selling price.','Add a confirmed retail selling price (e.g. 19.99).');blocked=true;}
+      else if(numericPrice(row.price)===null){add(row,'critical','PRICE_INVALID','price','Price must be a positive number with a period decimal separator.','Confirm currency and enter e.g. 19.99.');blocked=true;}
+      if(!row.image){add(row,'warning','IMAGE_MISSING','image','No public product image URL.','Obtain an approved, public HTTPS product image.');}
+      else if(!validHttpURL(row.image) || !row.image.startsWith('https://')) {add(row,'warning','IMAGE_URL_INVALID','image','Image URL is not a usable public HTTPS URL.','Replace with a public HTTPS image URL.');}
+      if(!row.description && !['color','material','width','height','depth','capacity','weight'].some(k=>row[k])) {add(row,'warning','DESCRIPTION_MISSING','description','No description or structured specifications.','Request a product description and/or verified specifications.');}
+      if(!row.source){add(row,'warning','SOURCE_MISSING','source','Missing supplier source reference.','Record the source file or product URL before publishing.');}
+      else if(!validHttpURL(row.source)){add(row,'warning','SOURCE_INVALID','source','Supplier source URL is not a valid web link.','Verify and correct the URL.');}
+      if(row.sku){const key=row.sku.toUpperCase();if(seenSKU.has(key)){
+        const prior=seenSKU.get(key);add(row,'critical','DUPLICATE_SKU','sku',`SKU also occurs on source row ${prior.sourceRow}.`,'Check whether this is an accidental duplicate or product variant.');
+        add(prior,'critical','DUPLICATE_SKU','sku',`SKU also occurs on source row ${row.sourceRow}.`,'Check whether this is an accidental duplicate or product variant.');
+        blocked=true; eligibility.set(prior.sourceRow,false);
+      }else seenSKU.set(key,row);}
+      const gtin=checkGTIN(row.gtin);
+      if(gtin.state==='invalid'){add(row,'critical','INVALID_GTIN','gtin','EAN/GTIN check digit or length is invalid.','Verify against packaging or official supplier data; never invent a GTIN.');blocked=true;}
+      if(gtin.state==='valid'){
+        if(seenGTIN.has(gtin.digits)){
+          const prior=seenGTIN.get(gtin.digits);
+          add(row,'critical','DUPLICATE_GTIN','gtin',`GTIN also occurs on source row ${prior.sourceRow}.`,'Confirm whether both rows represent one identical product.');
+          add(prior,'critical','DUPLICATE_GTIN','gtin',`GTIN also occurs on source row ${row.sourceRow}.`,'Confirm whether both rows represent one identical product.');
+          blocked=true;eligibility.set(prior.sourceRow,false);
+        }else seenGTIN.set(gtin.digits,row);
+      }
+      eligibility.set(row.sourceRow,!(blocked||eligibility.get(row.sourceRow)===false));
+    }
+    const drafts=[];
+    for(const row of items){
+      if(!eligibility.get(row.sourceRow))continue;
+      let handle=slug(row.title)||'item';
+      if(seenHandles.has(handle))handle=`${handle.slice(0,120)}-${slug(row.sku)}`;
+      // SKU is unique at this point; avoid accidental collisions.
+      if(seenHandles.has(handle)){add(row,'critical','DUPLICATE_HANDLE','title','Generated URL handle is not unique.','Adjust product title before import.');continue;}
+      seenHandles.add(handle);
+      const gtin=checkGTIN(row.gtin);
+      const price=numericPrice(row.price);
+      drafts.push({
+        'URL handle':handle,
+        'Title':row.title,
+        'Description':buildDescription(row),
+        'Vendor':row.brand,
+        'SKU':row.sku,
+        'Barcodes':gtin.state==='valid'?`gtin:${gtin.digits}`:'',
+        'Option1 name':'Default Title',
+        'Option1 value':'Default Title',
+        'Price':price.toFixed(2),
+        'Product image URL':row.image&&validHttpURL(row.image)&&row.image.startsWith('https://')?row.image:'',
+        'Image alt text':row.image&&validHttpURL(row.image)&&row.image.startsWith('https://')?`${row.title} product image`.slice(0,125):'',
+        'Status':'draft',
+        'Published on online store':'false'
+      });
+    }
+    const grouped=issues.reduce((a,i)=>{a[i.code]=(a[i.code]||0)+1;return a;},{});
+    const counts={rows:items.length,critical:issues.filter(i=>i.severity==='critical').length,warnings:issues.filter(i=>i.severity==='warning').length,drafts:drafts.length,blocked:items.length-drafts.length};
+    return {filename,items,issues,drafts,counts,grouped,
+      issueCSV:toCSV(ISSUE_COLUMNS,issues,true),
+      draftCSV:toCSV(SHOPIFY_COLUMNS,drafts,false),
+      reportJSON:JSON.stringify({generator:'RangeGate v0.1',file:filename,generated_at:new Date().toISOString(),counts,issues,source_columns:parsed.headers,mapping},null,2)
+    };
+  }
+  const CHANGE_FIELDS=['title','gtin','brand','price','description','image','color','width','height','depth','capacity','weight','material'];
+  const CHANGE_COLUMNS=['status','sku','changed_fields','old_title','new_title','old_price','new_price','old_gtin','new_gtin','old_image','new_image','review_note'];
+  // Compares *supplier snapshots*, not Shopify store data. Never writes to a store.
+  function compareVersions(oldParsed,newParsed,oldMapping,newMapping){
+    const hasSku=map=>map.sku!==null&&map.sku!==undefined;
+    if(!hasSku(oldMapping)||!hasSku(newMapping)) throw new Error('Match a manufacturer SKU column in both files.');
+    const indexFile=(parsed,map)=>{
+      if(parsed.rows.length>30000) throw new Error('Please split files over 30,000 rows.');
+      const records=new Map(), invalid=[], duplicates=new Set();
+      for(const r of parsed.rows){
+        const row={source_row:r.sourceRow};
+        for(const [field] of FIELDS) row[field]=map[field]===null||map[field]===undefined?'':safe(r.cells[map[field]]);
+        const key=row.sku.toUpperCase();
+        if(!key){invalid.push({row:r.sourceRow,issue:'MISSING_SKU'});continue;}
+        if(duplicates.has(key)){invalid.push({row:r.sourceRow,issue:'DUPLICATE_SKU',sku:row.sku});continue;}
+        if(records.has(key)){duplicates.add(key);invalid.push({row:r.sourceRow,issue:'DUPLICATE_SKU',sku:row.sku});continue;}
+        records.set(key,row);
+      }
+      for(const key of duplicates){const earlier=records.get(key);invalid.push({row:earlier.source_row,issue:'DUPLICATE_SKU',sku:earlier.sku});records.delete(key);}
+      return {records,invalid,duplicates};
+    };
+    const oldData=indexFile(oldParsed,oldMapping),newData=indexFile(newParsed,newMapping);
+    const ambiguous=new Set([...oldData.duplicates,...newData.duplicates]);
+    const changes=[];
+    const report=(status,key,prior,next,fields,note)=>changes.push({
+      status,sku:(next||prior).sku,changed_fields:fields.join('; '),
+      old_title:prior?.title||'',new_title:next?.title||'',
+      old_price:prior?.price||'',new_price:next?.price||'',
+      old_gtin:prior?.gtin||'',new_gtin:next?.gtin||'',
+      old_image:prior?.image||'',new_image:next?.image||'',
+      review_note:note
+    });
+    for(const [key,prior] of oldData.records){
+      if(ambiguous.has(key))continue;
+      const next=newData.records.get(key);
+      if(!next){report('NOT_IN_NEW_FILE',key,prior,null,[],'Do not delete automatically: verify if the new supplier file is complete and covers this SKU.');continue;}
+      const fields=CHANGE_FIELDS.filter(f=>oldMapping[f]!==null&&oldMapping[f]!==undefined&&newMapping[f]!==null&&newMapping[f]!==undefined&&safe(prior[f])!==safe(next[f]));
+      if(fields.length)report('CHANGED',key,prior,next,fields,'Review supplier changes, verify prices and identifiers, and approve updates manually.');
+      else report('UNCHANGED',key,prior,next,[],'No differences in fields present and mapped in both files.');
+    }
+    for(const [key,next] of newData.records){
+      if(ambiguous.has(key)||oldData.records.has(key))continue;
+      report('NEW_IN_FILE',key,null,next,[],'Potential new item. Check product details, prices and inventory before creating a draft.');
+    }
+    const order={CHANGED:0,NEW_IN_FILE:1,NOT_IN_NEW_FILE:2,UNCHANGED:3};
+    changes.sort((a,b)=>order[a.status]-order[b.status]||a.sku.localeCompare(b.sku));
+    const counts={old_rows:oldParsed.rows.length,new_rows:newParsed.rows.length,changed:changes.filter(c=>c.status==='CHANGED').length,added:changes.filter(c=>c.status==='NEW_IN_FILE').length,missing:changes.filter(c=>c.status==='NOT_IN_NEW_FILE').length,unchanged:changes.filter(c=>c.status==='UNCHANGED').length,invalid:oldData.invalid.length+newData.invalid.length,ambiguous_skus:[...ambiguous].sort()};
+    return {changes,counts,old_issues:oldData.invalid,new_issues:newData.invalid,
+      changeCSV:toCSV(CHANGE_COLUMNS,changes,true),
+      reportJSON:JSON.stringify({generator:'RangeGate v0.2',mode:'snapshot-diff',generated_at:new Date().toISOString(),counts,changes,old_issues:oldData.invalid,new_issues:newData.invalid,old_mapping:oldMapping,new_mapping:newMapping},null,2)};
+  }
+  return {FIELDS,SHOPIFY_COLUMNS,ISSUE_COLUMNS,parseCSV,guessMapping,checkGTIN,numericPrice,slug,toCSV,analyze,compareVersions,CHANGE_COLUMNS};
+});
+</script><script>(function(){
+  const C=window.RangeGate,$=id=>document.getElementById(id);let parsed=null,filename='demo.csv',result=null;
+  const DEMO=[
+    ['Brand','Product name','Manufacturer SKU','EAN','Colour','Width (cm)','Material','Retail price','Image URL','Source URL'],
+    ['Greengrove','Terracotta Planter 20cm','GG-101','4006381333931','Terracotta','20','Ceramic','24.99','https://example.com/planter.jpg','https://example.com/products/planter'],
+    ['Greengrove','Terracotta Planter 25cm','GG-102','4006381333931','Terracotta','25','Ceramic','','','https://example.com/products/planter-25'],
+    ['Greengrove','Weatherproof Plant Pot','GG-103','4006381333932','Slate','22','Plastic','19.95','','https://example.com/products/weatherproof'],
+    ['Greengrove','Duplicate SKU sample','GG-101','', 'Black','19','Plastic','12.00','',''],
+    ['Greengrove','Round Garden Pot','GG-104','','Green','17','Plastic','16.00','','https://example.com/products/round']
+  ];
+  const csvFromArray=arr=>arr.map(row=>row.map(v=>/[",\r\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v).join(',')).join('\n');
+  function showParsed(text,name) {
+    try{parsed=C.parseCSV(text);filename=name;$('loaded').textContent=`${filename} · ${parsed.rows.length.toLocaleString()} rows`;$('mapPanel').classList.remove('hidden');$('results').classList.add('hidden');
+      const guessed=C.guessMapping(parsed.headers);$('mapping').replaceChildren();
+      for(const [key,label] of C.FIELDS){const div=document.createElement('div');div.className='field';const lab=document.createElement('label');lab.textContent=label;lab.htmlFor=`map-${key}`;const sel=document.createElement('select');sel.id=`map-${key}`;
+        const none=document.createElement('option');none.value='';none.textContent='— Not provided —';sel.append(none);
+        parsed.headers.forEach((header,index)=>{const o=document.createElement('option');o.value=index;o.textContent=header;sel.append(o)});
+        sel.value=guessed[key]===null?'':guessed[key];div.append(lab,sel);$('mapping').append(div);
+      }
+      $('mapPanel').scrollIntoView({behavior:'smooth',block:'start'});
+    }catch(e){alert('Could not read catalogue: '+e.message);}
+  }
+  $('demo').addEventListener('click',()=>showParsed(csvFromArray(DEMO),'demo_supplier_issues.csv'));
+  $('file').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;if(file.size>10*1024*1024){alert('Please use a CSV below 10 MB.');return;}showParsed(await file.text(),file.name);});
+  $('run').addEventListener('click',()=>{
+    if(!parsed)return;const map={};for(const [key] of C.FIELDS){const v=$(`map-${key}`).value;map[key]=v===''?null:Number(v)}
+    if(map.title===null||map.sku===null){alert('Please match at least a title column and an SKU column.');return;}
+    try{result=C.analyze(parsed,map,filename);}catch(e){alert('Scan could not complete: '+e.message);return;}
+    for(const [id,value] of [['srows',result.counts.rows],['scrit',result.counts.critical],['swarn',result.counts.warnings],['sdraft',result.counts.drafts],['sblocked',result.counts.blocked]])$(id).textContent=value.toLocaleString();
+    $('filedesc').textContent=`${filename} · issues are counted per occurrence, so a row may contain several.`;
+    $('draftExport').disabled=result.counts.drafts===0;
+    $('blockedNote').textContent=result.counts.blocked?`${result.counts.blocked} row(s) excluded from draft export because of critical issues. See the issue report before proceeding.`:'All records have the minimum checks needed for a draft import. You still need to review every row.';
+    const tbody=$('issuesBody');tbody.replaceChildren();
+    for(const issue of result.issues.slice(0,100)){
+      const tr=document.createElement('tr'),values=[issue.source_row,issue.severity,`${issue.code.replace(/_/g,' ')} — ${issue.message}`,issue.suggested_action];
+      values.forEach((v,i)=>{const td=document.createElement('td');if(i===1){const pill=document.createElement('span');pill.className=`pill ${issue.severity}`;pill.textContent=v;td.append(pill)}else td.textContent=v;tr.append(td)});tbody.append(tr);
+    }
+    if(!result.issues.length){const tr=document.createElement('tr');const td=document.createElement('td');td.colSpan=4;td.textContent='No issues found in these initial checks. This does not guarantee product data is correct.';tr.append(td);tbody.append(tr)}
+    $('issueFoot').textContent=result.issues.length>100?`Showing first 100 of ${result.issues.length} issues. Download the full CSV for all issues.`:`${result.issues.length} issue(s) found. Download the CSV to review source values and links.`;
+    $('results').classList.remove('hidden');$('results').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  function download(text,name,type='text/csv;charset=utf-8'){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000)}
+  $('issuesExport').addEventListener('click',()=>result&&download(result.issueCSV,'rangegate-issues.csv'));
+  $('draftExport').addEventListener('click',()=>result&&result.drafts.length&&download(result.draftCSV,'rangegate-shopify-new-drafts.csv'));
+  $('jsonExport').addEventListener('click',()=>result&&download(result.reportJSON,'rangegate-audit.json','application/json'));
+  // Independent comparison workflow. No account permissions or store writes.
+  let oldParsed=null,newParsed=null,diffResult=null;
+  const oldSample='Product name,Manufacturer SKU,Retail price,EAN,Brand\nPlanter 20cm,GG-001,19.99,4006381333931,Greengrove\nTrowel,GG-002,9.99,,Greengrove\nPot 25cm,GG-003,22.00,,Greengrove\n';
+  const newSample='Product name,Manufacturer SKU,Retail price,EAN,Brand\nPlanter 20cm,GG-001,21.99,4006381333931,Greengrove\nTrowel,GG-002,9.99,,Greengrove\nGloves,GG-004,11.50,,Greengrove\n';
+  function comparisonStatus(){
+    const info=$('comparisonMapping');
+    if(!oldParsed||!newParsed){info.textContent='Select two CSV files, or use the sample pair.';return;}
+    const desc=(file,tag)=>`${tag}: ${file.rows.length} rows · matches: `+['sku','title','price','gtin','image'].map(f=>`${f}=${file.headers[C.guessMapping(file.headers)[f]]||'NOT MAPPED'}`).join(', ');
+    info.textContent=desc(oldParsed,'Older')+' | '+desc(newParsed,'Newer');
+  }
+  $('compareDemo').addEventListener('click',()=>{oldParsed=C.parseCSV(oldSample);newParsed=C.parseCSV(newSample);comparisonStatus();$('comparisonResults').classList.add('hidden');});
+  for(const [id,isOld] of [['oldFile',true],['newFile',false]]){$(id).addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;if(file.size>10*1024*1024){alert('Use CSV files under 10 MB.');return;}try{const parsed=C.parseCSV(await file.text());if(isOld)oldParsed=parsed;else newParsed=parsed;comparisonStatus();$('comparisonResults').classList.add('hidden');}catch(err){alert('Could not read '+file.name+': '+err.message);}});}
+  $('compareRun').addEventListener('click',()=>{if(!oldParsed||!newParsed){alert('Select two CSV files, or click Try two sample supplier versions.');return;}
+    try{diffResult=C.compareVersions(oldParsed,newParsed,C.guessMapping(oldParsed.headers),C.guessMapping(newParsed.headers));}catch(e){alert('Could not compare: '+e.message);return;}
+    for(const [id,value] of [['dChanged',diffResult.counts.changed],['dNew',diffResult.counts.added],['dMissing',diffResult.counts.missing],['dUnchanged',diffResult.counts.unchanged],['dInvalid',diffResult.counts.invalid]])$(id).textContent=value.toLocaleString();
+    const body=$('changeBody');body.replaceChildren();
+    for(const c of diffResult.changes.slice(0,100)){const tr=document.createElement('tr');for(const v of [c.sku,c.status.replaceAll('_',' '),c.changed_fields||'—',c.review_note]){const td=document.createElement('td');td.textContent=v;tr.append(td);}body.append(tr);}
+    $('changeFoot').textContent=`${diffResult.changes.length} comparable SKUs. ${diffResult.counts.invalid} source rows with missing/duplicate SKUs excluded. Displaying first 100 changes; download the full report.`;
+    $('comparisonResults').classList.remove('hidden');$('comparisonResults').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  $('changeExport').addEventListener('click',()=>diffResult&&download(diffResult.changeCSV,'rangegate-supplier-changes.csv'));
+  $('changeJson').addEventListener('click',()=>diffResult&&download(diffResult.reportJSON,'rangegate-supplier-changes.json','application/json'));
+  comparisonStatus();
+})();
+</script></body></html>
